@@ -1,0 +1,22 @@
+{
+  "name": "pcl",
+  "version": "1.0.0",
+  "description": "Server for my Pcl Social media app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malcolm5858/Pcl-Project.git"
+  },
+  "author": "Malcolm Machesky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malcolm5858/Pcl-Project/issues"
+  },
+  "homepage": "https://github.com/malcolm5858/Pcl-Project#readme",
+  "dependencies": {
+    "mongodb": "^2.2.33"
+  }
+}
