@@ -19,7 +19,6 @@ class UserDatasourceController: DatasourceController {
         let userDatasource = UserDatasource()
         self.datasource = userDatasource
         
-        setupNavagationBar()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,14 +32,9 @@ class UserDatasourceController: DatasourceController {
         self.collectionView?.alwaysBounceVertical = true
         
         
+        
     }
-    
-    func setupNavagationBar() {
-        //TODO: look at this 
-        let customBackButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-        customBackButton.title = " "
-        self.navigationItem.backBarButtonItem = customBackButton
-    }
+
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 550)

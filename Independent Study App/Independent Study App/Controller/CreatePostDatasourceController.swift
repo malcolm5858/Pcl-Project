@@ -6,4 +6,14 @@
 //  Copyright © 2017 Malcolm Machesky. All rights reserved.
 //
 
-import Foundation
+import LBTAComponents
+
+class CreatePostDatasourceController: DatasourceController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
+    
+}

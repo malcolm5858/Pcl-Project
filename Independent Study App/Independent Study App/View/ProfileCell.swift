@@ -6,4 +6,20 @@
 //  Copyright © 2017 Malcolm Machesky. All rights reserved.
 //
 
-import Foundation
+import LBTAComponents
+
+class ProfileCell: DatasourceCell{
+    
+    
+    
+    
+    
+    
+    override func setupViews() {
+        super.setupViews()
+        
+        backgroundColor = .blue
+        
+    }
+    
+}

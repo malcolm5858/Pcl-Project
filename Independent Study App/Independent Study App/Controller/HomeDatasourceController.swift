@@ -20,6 +20,9 @@ class HomeDatasourceController: DatasourceController {
         self.collectionView?.bounces = true
         self.collectionView?.alwaysBounceVertical = true
         
+        
+        
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -40,8 +43,15 @@ class HomeDatasourceController: DatasourceController {
             print("Error at pushUserVC")
             return
         }
+        setupNavagationBar()
         datasource.postAtIndex = postAtIndex
         self.navigationController?.pushViewController(UserVC, animated: true)
+    }
+    
+    func setupNavagationBar() {
+        let customBackButton = UIBarButtonItem()
+        self.navigationController?.view.tintColor = UIColor.black
+        self.navigationItem.backBarButtonItem = customBackButton
     }
     
     

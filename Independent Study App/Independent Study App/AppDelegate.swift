@@ -19,7 +19,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: HomeDatasourceController())
+        let tabBarController = UITabBarController()
+        let controllers: [UIViewController] = {
+            let homeController = HomeDatasourceController()
+            let searchController = SearchDatasourceController()
+            let createController = CreatePostDatasourceController()
+            let profileController = ProfileDatasourceController()
+            
+            homeController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "Home"), tag: 0)
+            searchController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "ic_search_36pt"), tag: 1)
+            createController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "ic_add_36pt"), tag: 2)
+            profileController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "ic_person_outline_36pt"), tag: 3)
+            
+            return [UINavigationController(rootViewController: homeController),
+                    UINavigationController(rootViewController: searchController),
+                    UINavigationController(rootViewController: createController),
+                    UINavigationController(rootViewController: profileController)]
+        }()
+        tabBarController.viewControllers = controllers
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
         return true

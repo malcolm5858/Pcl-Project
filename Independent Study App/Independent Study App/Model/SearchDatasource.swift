@@ -6,4 +6,8 @@
 //  Copyright © 2017 Malcolm Machesky. All rights reserved.
 //
 
-import Foundation
+import LBTAComponents
+
+class SearchDatasource: Datasource {
+    
+}

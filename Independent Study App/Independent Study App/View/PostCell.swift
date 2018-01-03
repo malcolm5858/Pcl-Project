@@ -58,7 +58,6 @@ class PostCell: DatasourceCell, UIGestureRecognizerDelegate {
     }()
     
     @objc func tappedUser(sender: UITapGestureRecognizer) {
-        print("Tapped the User Picture")
         let controller = self.controller as? HomeDatasourceController
         controller?.pushUserVC(postAtIndex: post)
     }
