@@ -13,8 +13,6 @@ class Util {
     static var mInstance = Util()
     
     
-    
-    
     func RBResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
         
@@ -39,5 +37,16 @@ class Util {
         UIGraphicsEndImageContext()
         
         return newImage!
+    }
+    
+    func addButtonTo(imageView: UIImageView, sender: Selector, classObject: AnyObject) -> UIImageView {
+        let imageView = imageView
+        
+        let UITapRecognizer = UITapGestureRecognizer(target: self, action: sender)
+        UITapRecognizer.delegate = classObject as? UIGestureRecognizerDelegate
+        imageView.addGestureRecognizer(UITapRecognizer)
+        imageView.isUserInteractionEnabled = true
+        
+        return imageView
     }
 }

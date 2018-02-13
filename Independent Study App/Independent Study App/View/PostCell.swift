@@ -10,6 +10,7 @@ import LBTAComponents
 
 class PostCell: DatasourceCell, UIGestureRecognizerDelegate {
     
+    //MARK: Data form datasource
     var post: Post?
     
     override var datasourceItem: Any? {
@@ -23,6 +24,7 @@ class PostCell: DatasourceCell, UIGestureRecognizerDelegate {
         }
     }
     
+    //MARK: Views
     let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
@@ -39,16 +41,7 @@ class PostCell: DatasourceCell, UIGestureRecognizerDelegate {
         return imageView
     }()
     
-    func addButtonTo(imageView: UIImageView) -> UIImageView {
-        let imageView = imageView
-        
-        let UITapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedUser(sender:)))
-        UITapRecognizer.delegate = self
-        imageView.addGestureRecognizer(UITapRecognizer)
-        imageView.isUserInteractionEnabled = true
-        
-        return imageView
-    }
+    
     
     let postPicture: UIImageView = {
         let imageView = UIImageView()
@@ -57,6 +50,7 @@ class PostCell: DatasourceCell, UIGestureRecognizerDelegate {
         return imageView
     }()
     
+    //MARK: Navigation
     @objc func tappedUser(sender: UITapGestureRecognizer) {
         let controller = self.controller as? HomeDatasourceController
         controller?.pushUserVC(postAtIndex: post)
@@ -66,13 +60,13 @@ class PostCell: DatasourceCell, UIGestureRecognizerDelegate {
     
     override func setupViews() {
         super.setupViews()
-        //backgroundColor = .yellow
         
-        addSubview(addButtonTo(imageView: userPicture))
+        //MARK: addSubview
+        addSubview(Util.mInstance.addButtonTo(imageView: userPicture, sender: #selector(tappedUser(sender:)), classObject: self))
         addSubview(nameLabel)
         addSubview(postPicture)
         
-        
+        //MARK: Anchor
         userPicture.anchor(self.topAnchor, left: leftAnchor, bottom: nil, right: nil, topConstant: 10, leftConstant: 10, bottomConstant: 10, rightConstant: 0, widthConstant: 50, heightConstant: 50)
         nameLabel.anchor(userPicture.topAnchor, left: userPicture.rightAnchor , bottom: nil, right: self.rightAnchor, topConstant: 20, leftConstant: 5, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 10)
         postPicture.anchor(userPicture.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 500)

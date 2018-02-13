@@ -6,4 +6,18 @@
 //  Copyright © 2018 Malcolm Machesky. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreLocation
+
+class LocationTracker: NSObject, CLLocationManagerDelegate{
+    
+    func getLocation() {
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+    }
+    
+}
+

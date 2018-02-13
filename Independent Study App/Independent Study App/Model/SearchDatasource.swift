@@ -10,4 +10,17 @@ import LBTAComponents
 
 class SearchDatasource: Datasource {
     
+    
+    override func cellClasses() -> [DatasourceCell.Type] {
+        return [SearchCell.self]
+    }
+    
+    override func numberOfSections() -> Int {
+        return 1
+    }
+    
+    override func numberOfItems(_ section: Int) -> Int {
+        return 1
+    }
+    
 }

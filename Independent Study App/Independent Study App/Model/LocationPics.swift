@@ -6,4 +6,32 @@
 //  Copyright © 2018 Malcolm Machesky. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class LocationPics {
+    
+    private static var mInstance: LocationPics!;
+    
+    
+    public static func getInstance() -> LocationPics {
+        if mInstance == nil {
+            mInstance = LocationPics()
+        }
+        return mInstance
+    }
+    
+    
+    private init() {
+        //Call functions in location tracker
+    }
+    
+    public static func getPics() -> [UIImage] {
+        let pics = [#imageLiteral(resourceName: "Alex1"), #imageLiteral(resourceName: "MalcolmProfile")]
+        return pics
+    }
+    public static func getIdentifiers() -> [String] {
+        let identifiiers = ["Alex1", "MalcolmProfile"]
+        return identifiiers
+    }
+    
+}

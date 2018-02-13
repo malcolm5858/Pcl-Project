@@ -15,6 +15,7 @@ class DataExample {
     var Users: [User] = []
     var Posts : [Post] = []
     var currentUser: User?
+    var postForUser: [[Post]]?
     
     private init() {
         Users = {
@@ -33,6 +34,13 @@ class DataExample {
         }()
         
         currentUser = Users[0]
+        
+        postForUser = {
+            let malcolmPosts = [Posts[0], Posts[1]]
+            let robertPosts = [Posts[2]]
+            let alexPosts = [Posts[3]]
+            return [malcolmPosts, robertPosts, alexPosts]
+        }()
     }
     
     
