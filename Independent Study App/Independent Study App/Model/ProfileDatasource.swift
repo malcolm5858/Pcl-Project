@@ -15,17 +15,14 @@ class ProfileDatasource: Datasource {
         return DataExample.sharedInstance.currentUser
     }
     
-    override func cellClasses() -> [DatasourceCell.Type] {
-        return [ProfileCell.self]
-    }
-    
     override func headerClasses() -> [DatasourceCell.Type]? {
         return [ProfileHeaderCell.self]
     }
     
-    override func headerItem(_ section: Int) -> Any? {
-        return DataExample.sharedInstance.currentUser
+    override func cellClasses() -> [DatasourceCell.Type] {
+        return [ProfileCell.self]
     }
+    
     
     override func numberOfItems(_ section: Int) -> Int {
         return 1

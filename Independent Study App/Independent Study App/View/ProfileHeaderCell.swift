@@ -15,7 +15,7 @@ class ProfileHeaderCell: DatasourceCell {
     override var datasourceItem: Any? {
         didSet {
             guard let user = datasourceItem as? User else { return }
-            userPicture.image = Util.mInstance.RBResizeImage(image: user.profilePicture, targetSize: CGSize(width: 100, height: 100))
+            userPicture.image = Util.mInstance.RBResizeImage(image: UIImage(data: user.profilePicture)! , targetSize: CGSize(width: 100, height: 100))
             
         }
     }
@@ -37,6 +37,7 @@ class ProfileHeaderCell: DatasourceCell {
     
     
     override func setupViews() {
+        user = DataExample.sharedInstance.currentUser
         super.setupViews()
     
         //MARK: addSubview

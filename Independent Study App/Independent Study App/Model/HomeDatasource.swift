@@ -13,15 +13,15 @@ class HomeDatasource: Datasource {
     
     
     override func item(_ indexPath: IndexPath) -> Any? {
-        return DataExample.sharedInstance.Posts[indexPath.item]
+        return SaveAndLoadData.sharedInstance.getPosts()[indexPath.row]
     }
     
     override func headerClasses() -> [DatasourceCell.Type]? {
-        return [HomeHeaderCell.self]
+        return []
     }
     
     override func footerClasses() -> [DatasourceCell.Type]? {
-        return [HomeFooterCell.self]
+        return []
     }
     
     override func cellClasses() -> [DatasourceCell.Type] {
@@ -29,7 +29,7 @@ class HomeDatasource: Datasource {
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        return DataExample.sharedInstance.Posts.count
+        return SaveAndLoadData.sharedInstance.getPosts().count
     }
     
     

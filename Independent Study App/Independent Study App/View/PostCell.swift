@@ -19,8 +19,8 @@ class PostCell: DatasourceCell, UIGestureRecognizerDelegate {
             self.post = post
             let user: User = post.user
             nameLabel.text = user.username
-            userPicture.image = Util.mInstance.RBResizeImage(image: user.profilePicture, targetSize: CGSize(width: 50, height: 50))
-            postPicture.image = post.postImage
+            userPicture.image = Util.mInstance.RBResizeImage(image: UIImage(data: user.profilePicture)! , targetSize: CGSize(width: 50, height: 50))
+            postPicture.image = UIImage(data: post.postImage)
         }
     }
     

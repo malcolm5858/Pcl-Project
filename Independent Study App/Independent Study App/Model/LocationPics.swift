@@ -22,8 +22,12 @@ class LocationPics {
     
     
     private init() {
-        //Call functions in location tracker
+        
     }
+    
+    
+    
+    
     
     public static func getPics() -> [UIImage] {
         let pics = [#imageLiteral(resourceName: "Alex1"), #imageLiteral(resourceName: "MalcolmProfile")]

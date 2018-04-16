@@ -8,5 +8,6 @@ target 'Independent Study App' do
   # Pods for Independent Study App
 
   pod 'LBTAComponents', '~> 1.0.2'
+  pod 'KituraKit', :git => 'https://github.com/IBM-Swift/KituraKit.git', :branch => 'pod'
 
 end

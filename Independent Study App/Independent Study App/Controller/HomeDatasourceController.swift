@@ -28,7 +28,7 @@ class HomeDatasourceController: DatasourceController {
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 550)
     }
-    
+    /*
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 50)
     }
@@ -36,6 +36,7 @@ class HomeDatasourceController: DatasourceController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 50)
     }
+ */
     func pushUserVC(postAtIndex: Post?){
         let UserVC = UserDatasourceController()
         guard let datasource: UserDatasource = UserVC.datasource as? UserDatasource else {

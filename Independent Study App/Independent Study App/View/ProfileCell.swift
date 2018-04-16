@@ -11,14 +11,10 @@ import LBTAComponents
 class ProfileCell: DatasourceCell{
     
     
-    
-    
-    
-    
     override func setupViews() {
         super.setupViews()
         
-        backgroundColor = .blue
+        backgroundColor = .white
         
     }
     

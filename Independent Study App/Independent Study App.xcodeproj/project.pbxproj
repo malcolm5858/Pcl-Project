@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50BB988FB19BC446241FE314 /* Pods_Independent_Study_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFE2C27CFA1752C27ECF6C13 /* Pods_Independent_Study_App.framework */; };
+		D903E614206BBB57005F0DC0 /* SaveAndLoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D903E613206BBB57005F0DC0 /* SaveAndLoadData.swift */; };
 		D913A4C91FFD27150030D1D6 /* DataExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = D913A4C81FFD27150030D1D6 /* DataExample.swift */; };
 		D92D202D1FE9A3160019F9BD /* UserDatasourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92D202C1FE9A3160019F9BD /* UserDatasourceController.swift */; };
 		D92D202F1FE9A32B0019F9BD /* UserDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92D202E1FE9A32B0019F9BD /* UserDatasource.swift */; };
@@ -30,6 +31,7 @@
 		D95947AA1FE9697400F85F3F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95947A91FE9697400F85F3F /* Post.swift */; };
 		D95947AC1FE9698000F85F3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95947AB1FE9698000F85F3F /* User.swift */; };
 		D9658B3B1FE809C300239CD9 /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9658B3A1FE809C300239CD9 /* HomeDatasource.swift */; };
+		D99F8B162080D2F900511A33 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99F8B152080D2F900511A33 /* Api.swift */; };
 		D9B2DB1D1FFE7B6A0062EBC2 /* ProfileStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B2DB1C1FFE7B6A0062EBC2 /* ProfileStatsView.swift */; };
 		D9B6C2891FE1D710002E82EC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B6C2881FE1D710002E82EC /* Launch Screen.storyboard */; };
 		D9BD1A2D201F6D7A00CB05BB /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD1A2C201F6D7A00CB05BB /* LocationTracker.swift */; };
@@ -45,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		0F48F2F8A4DEFA0A120891DF /* Pods-Independent Study App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Independent Study App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Independent Study App/Pods-Independent Study App.debug.xcconfig"; sourceTree = "<group>"; };
+		D903E613206BBB57005F0DC0 /* SaveAndLoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAndLoadData.swift; sourceTree = "<group>"; };
 		D913A4C81FFD27150030D1D6 /* DataExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExample.swift; sourceTree = "<group>"; };
 		D92D202C1FE9A3160019F9BD /* UserDatasourceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatasourceController.swift; sourceTree = "<group>"; };
 		D92D202E1FE9A32B0019F9BD /* UserDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatasource.swift; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 		D95947A91FE9697400F85F3F /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Post.swift; path = "Independent Study App/View/Post.swift"; sourceTree = SOURCE_ROOT; };
 		D95947AB1FE9698000F85F3F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D9658B3A1FE809C300239CD9 /* HomeDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
+		D99F8B152080D2F900511A33 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		D9B2DB1C1FFE7B6A0062EBC2 /* ProfileStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatsView.swift; sourceTree = "<group>"; };
 		D9B6C2881FE1D710002E82EC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D9BD1A2C201F6D7A00CB05BB /* LocationTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 			children = (
 				D92D20311FEAA5540019F9BD /* Util.swift */,
 				D9BD1A2C201F6D7A00CB05BB /* LocationTracker.swift */,
+				D903E613206BBB57005F0DC0 /* SaveAndLoadData.swift */,
+				D99F8B152080D2F900511A33 /* Api.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -304,10 +310,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Independent Study App/Pods-Independent Study App-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KituraKit/KituraKit.framework",
 				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KituraKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,6 +360,7 @@
 				D9BD1A2F2020C2A000CB05BB /* LocationPics.swift in Sources */,
 				D92D202D1FE9A3160019F9BD /* UserDatasourceController.swift in Sources */,
 				D94A54881FED853800E50A2C /* ProfileDatasource.swift in Sources */,
+				D903E614206BBB57005F0DC0 /* SaveAndLoadData.swift in Sources */,
 				D95947AC1FE9698000F85F3F /* User.swift in Sources */,
 				D9B2DB1D1FFE7B6A0062EBC2 /* ProfileStatsView.swift in Sources */,
 				D94A548A1FED855700E50A2C /* ProfileDatasourceController.swift in Sources */,
@@ -366,6 +375,7 @@
 				D94A54781FED844A00E50A2C /* CreatePostCell.swift in Sources */,
 				D94A547E1FED849400E50A2C /* CreatePostDatasource.swift in Sources */,
 				D94A54721FED839400E50A2C /* SearchCell.swift in Sources */,
+				D99F8B162080D2F900511A33 /* Api.swift in Sources */,
 				D94A54701FED837200E50A2C /* SearchDatasource.swift in Sources */,
 				D9CEF9621FEAB14E0040FA7F /* PostCell.swift in Sources */,
 				D9CEF9661FEAB16A0040FA7F /* HomeFooterCell.swift in Sources */,

@@ -19,18 +19,23 @@ class SearchCell: DatasourceCell, UISearchBarDelegate, UICollectionViewDelegate,
     
     
     required init?(coder aDecoder: NSCoder) {
+        SaveAndLoadData.sharedInstance.saveUser(user: User(username: "TEST", profilePicture: UIImagePNGRepresentation(#imageLiteral(resourceName: "AlexProfile"))!, bio: "BIO"))
         pictureCollection = UICollectionView()
         searchController = UISearchController()
         super.init(coder: aDecoder)
     }
     
     override init(frame: CGRect) {
+        
+        SaveAndLoadData.sharedInstance.saveUser(user: User(username: "TEST", profilePicture: UIImagePNGRepresentation(#imageLiteral(resourceName: "AlexProfile"))!, bio: "BIO"))
+        
+        
         pictureCollection = UICollectionView(frame: frame, collectionViewLayout: layout)
         
         searchController = {
             let searchController = UISearchController(searchResultsController: nil)
-            searchController.hidesNavigationBarDuringPresentation = true
-            searchController.dimsBackgroundDuringPresentation = false
+            //searchController.hidesNavigationBarDuringPresentation = true
+           // searchController.dimsBackgroundDuringPresentation = false
             
             return searchController
         }()
@@ -40,7 +45,7 @@ class SearchCell: DatasourceCell, UISearchBarDelegate, UICollectionViewDelegate,
     
     var pics: [UIImage] = LocationPics.getPics()
     var identifiers: [String] = LocationPics.getIdentifiers()
-    var filteredData: [UIImage] = [UIImage]()
+    var filteredData = [String]()
     
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -63,8 +68,10 @@ class SearchCell: DatasourceCell, UISearchBarDelegate, UICollectionViewDelegate,
         searchController.searchResultsUpdater = self
         pictureCollection.delegate = self
         searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = true
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = false
+        
         
         
         
@@ -79,6 +86,7 @@ class SearchCell: DatasourceCell, UISearchBarDelegate, UICollectionViewDelegate,
         //MARK: Setup Search Bar
         searchController.searchBar.placeholder = "Search: "
         searchController.searchBar.barStyle = .default
+        searchController.searchBar.becomeFirstResponder()
         
         //MARK: addSubview
         searchController.searchBar.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
@@ -94,19 +102,39 @@ class SearchCell: DatasourceCell, UISearchBarDelegate, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        /*
         let imageViewTest: UIImageView = {
             let imageView = UIImageView()
             return imageView
         }()
-        if searchController.isActive {
-            imageViewTest.image = filteredData[indexPath.row]
-        }
-        else {
-            imageViewTest.image = pics[indexPath.row]
-        }
-        
+            //imageViewTest.image = filteredData[indexPath.row]
+        imageViewTest.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        imageViewTest.sizeToFit()
         cell.addSubview(imageViewTest)
-        imageViewTest.anchor(cell.topAnchor, left: cell.leftAnchor, bottom: cell.bottomAnchor, right: cell.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        
+        return cell
+         */
+        //TODO: BIG PROBLEMS FIX 
+        let label = UILabel()
+        //label.anchor(self.topAnchor, left: nil, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        if searchController.isActive {
+            if let searchTerm = self.searchController.searchBar.text {
+                let labelText = filteredData[indexPath.row] as String
+                let searchTermMatches = self.searchString(string: labelText, searchTerm: searchTerm)
+                let attributedLabelText = NSMutableAttributedString(string: labelText)
+                for match in searchTermMatches as! [NSTextCheckingResult] {
+                    let matchRange = match.range
+                    attributedLabelText.addAttribute(NSAttributedStringKey.backgroundColor, value: UIColor.yellow, range: matchRange)
+                }
+                label.attributedText = attributedLabelText
+            }
+        } else {
+            let labelText = identifiers[indexPath.row] as String
+            label.attributedText = nil
+            label.text = labelText
+        }
+        cell.addSubview(label)
         
         return cell
     }
@@ -116,11 +144,11 @@ class SearchCell: DatasourceCell, UISearchBarDelegate, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if searchController.isActive {
+        if self.searchController.isActive {
             return filteredData.count
         }
-        else{
-            return pics.count
+        else {
+            return identifiers.count
         }
     }
     
@@ -131,9 +159,9 @@ class SearchCell: DatasourceCell, UISearchBarDelegate, UICollectionViewDelegate,
    
     
     func filterData() {
-        filteredData = pics.filter({ (uiImage) -> Bool in
+        filteredData = identifiers.filter({ (string) -> Bool in
             if let searchTerm = self.searchController.searchBar.text {
-                let searchTermMatches = self.searchString(string: identifiers[pics.index(of: uiImage)!], searchTerm: searchTerm).count > 0
+                let searchTermMatches = self.searchString(string: string, searchTerm: searchTerm).count > 0
                 if searchTermMatches {
                     return true
                 }
@@ -141,6 +169,8 @@ class SearchCell: DatasourceCell, UISearchBarDelegate, UICollectionViewDelegate,
             return false
         })
     }
+    
+    
     
     func searchString(string: String, searchTerm: String) -> Array<AnyObject> {
         var matches: Array<AnyObject> = []
@@ -155,5 +185,7 @@ class SearchCell: DatasourceCell, UISearchBarDelegate, UICollectionViewDelegate,
         }
         return matches
     }
+    
+    
     
 }

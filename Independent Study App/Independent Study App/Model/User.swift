@@ -6,10 +6,10 @@
 //  Copyright © 2017 Malcolm Machesky. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-struct User {
+struct User: Codable {
     var username: String
-    var profilePicture: UIImage
+    var profilePicture: Data
     var bio: String
 }

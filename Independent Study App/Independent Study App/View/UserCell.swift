@@ -14,7 +14,7 @@ class UserCell: DatasourceCell {
         didSet {
             guard let post = datasourceItem as? Post else {return}
             let user = post.user
-            userPicture.image = user.profilePicture
+            userPicture.image = UIImage(data: user.profilePicture)
         }
     }
     
