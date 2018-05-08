@@ -2,13 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>To update new pictures</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To update new pictures</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Those pictures need updating</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Those pictures need updating</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSAppTransportSecurity</key>
- <dict>
-		 <key>NSAllowsArbitraryLoads</key>
- <true/>
- </dict>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

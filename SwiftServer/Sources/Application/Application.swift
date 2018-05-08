@@ -23,7 +23,7 @@ public class App {
         // Run the metrics initializer
         initializeMetrics(router: router)
     }
-
+    
     func postInit() throws {
         // Endpoints
         router.post("/users", handler: storeHandlerUser)

@@ -13,3 +13,12 @@ struct User: Codable {
     var profilePicture: Data
     var bio: String
 }
+
+extension User: Equatable {
+    static func == (lhs: User, rhs: User) -> Bool {
+        return
+            lhs.bio == rhs.bio &&
+            lhs.profilePicture == rhs.profilePicture &&
+            lhs.username == rhs.username
+    }
+}

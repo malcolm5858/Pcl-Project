@@ -12,10 +12,13 @@ import CoreLocation
 class LocationTracker: NSObject, CLLocationManagerDelegate{
     
     func getLocation() {
-        let locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
+        
+        
+    }
+    
+    override init() {
+      
+        
         
     }
     

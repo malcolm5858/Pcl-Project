@@ -7,9 +7,20 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct Post: Codable {
     var user: User
     var caption: String
     var postImage: Data
+    var coordinate: Coordinate
 }
+
+
+public struct Coordinate: Codable {
+    var latitude: Double
+    var longitude: Double
+}
+
+
+
