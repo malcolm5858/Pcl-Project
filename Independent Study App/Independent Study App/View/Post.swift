@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreLocation
 
 struct Post: Codable {
     var user: User

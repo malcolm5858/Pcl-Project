@@ -70,7 +70,7 @@ class Api {
         }
         client.get("/users") { (users: [User]?, error: Error?) in
             guard error == nil else {
-                print("Error getting meal from kitura: \(error!)")
+                print("Error getting users from kitura: \(error!)")
                 return
             }
             guard let users = users else {
@@ -88,7 +88,7 @@ class Api {
         }
         client.get("/posts") { (posts: [Post]?, error: Error?) in
             guard error == nil else {
-                print("Error getting meal from kitura: \(error!)")
+                print("Error getting posts from kitura: \(error!)")
                 return
             }
             guard let posts = posts else {

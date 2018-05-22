@@ -13,6 +13,16 @@ class HomeDatasource: Datasource {
     
     
     override func item(_ indexPath: IndexPath) -> Any? {
+         
+        /*
+        do {
+            return  tryApi.sharedInstance.getPosts()[indexPath.row]
+        }
+        catch {
+            return nil
+        }
+ */
+        SaveAndLoadData.sharedInstance.loadFromServer()
         return SaveAndLoadData.sharedInstance.getPosts()[indexPath.row]
     }
     
@@ -29,6 +39,16 @@ class HomeDatasource: Datasource {
     }
     
     override func numberOfItems(_ section: Int) -> Int {
+        /*
+        do {
+            return try Api.sharedInstance.getPosts().count
+        }
+        catch {
+            return 0
+        }
+         */
+        SaveAndLoadData.sharedInstance.loadFromServer()
+        print(SaveAndLoadData.sharedInstance.getPosts().count)
         return SaveAndLoadData.sharedInstance.getPosts().count
     }
     

@@ -6,7 +6,7 @@ import CloudEnvironment
 import KituraContracts
 import Health
 import SwiftKueryORM
-import SwiftKueryPostgreSQL
+
 
 
 public let projectPath = ConfigurationManager.BasePath.project.path
@@ -18,6 +18,8 @@ public class App {
     let router = Router()
     let cloudEnv = CloudEnv()
    
+    private var userStore: [String: User] = [:]
+    private var postStore: [String: Post] = [:]
 
     public init() throws {
         // Run the metrics initializer
@@ -30,30 +32,40 @@ public class App {
         router.get("/users", handler: loadHandlerUser)
         router.post("/posts", handler: storeHandlerPost)
         router.get("/posts", handler: loadHandlerPost)
+        /*
         Persistence.setUp()
         do {
             try User.createTableSync()
         } catch let error {
             print(error)
         }
+ */
         
         initializeHealthRoutes(app: self)
     }
     
-    func storeHandlerUser(user: User, completion: @escaping (User?, RequestError?) -> Void) {
-        user.save(completion)
+    func storeHandlerUser(user: User, completion:  (User?, RequestError?) -> Void) {
+        userStore[user.username] = user
+        completion(userStore[user.username], nil)
+        //user.save(completion)
     }
     
-    func loadHandlerUser(completion: @escaping ([User]?, RequestError?) -> Void) {
-        User.findAll(completion)
+    func loadHandlerUser(completion:  ([User]?, RequestError?) -> Void) {
+        //User.findAll(completion)
+        let users: [User] = self.userStore.map({ $0.value })
+        completion(users, nil)
     }
     
-    func storeHandlerPost(post: Post, completion: @escaping (Post?, RequestError?) -> Void) {
-        post.save(completion)
+    func storeHandlerPost(post: Post, completion:  (Post?, RequestError?) -> Void) {
+        postStore[post.caption] = post
+        completion(postStore[post.caption], nil)
+        //post.save(completion)
     }
     
-    func loadHandlerPost(completion: @escaping ([Post]?, RequestError?) -> Void) {
-        Post.findAll(completion)
+    func loadHandlerPost(completion:  ([Post]?, RequestError?) -> Void) {
+        //Post.findAll(completion)
+        let posts: [Post] = self.postStore.map({ $0.value })
+        completion(posts, nil)
     }
     
     
@@ -69,9 +81,6 @@ public class App {
 
 class Persistence {
     
-    static func setUp() {
-        let pool = PostgreSQLConnection.createPool(host: "localhost", port: 5432, options: [.databaseName("socialMediaAppDatabase")], poolOptions: ConnectionPoolOptions(initialCapacity: 10, maxCapacity: 50, timeout: 10000))
-        Database.default = Database(pool)
-    }
+    
     
 }

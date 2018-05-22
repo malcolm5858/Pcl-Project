@@ -59,6 +59,7 @@ class PostCell: DatasourceCell, UIGestureRecognizerDelegate {
     
     
     override func setupViews() {
+       
         super.setupViews()
         
         //MARK: addSubview

@@ -9,9 +9,13 @@
 import UIKit
 
 class Util {
-    
+    //Singleton
     static var mInstance = Util()
+   
+    //Vars
+    public static let radius = 200.0
     
+    //Funcs
     
     func RBResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size

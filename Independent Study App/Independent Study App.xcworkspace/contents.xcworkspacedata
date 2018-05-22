@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:seaholm.gpx">
+   </FileRef>
+   <FileRef
       location = "group:Independent Study App.xcodeproj">
    </FileRef>
    <FileRef

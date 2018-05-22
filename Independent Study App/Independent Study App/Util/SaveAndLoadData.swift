@@ -13,7 +13,7 @@ class SaveAndLoadData {
     
     //Data Arrays
     private var users: [User] = []
-    private var posts: [Post] = []
+    public var posts: [Post] = []
     
     
     init() {
@@ -66,7 +66,7 @@ class SaveAndLoadData {
             return
             
         }
-        client.get("/users", respondWith: { (users: [User]?, error: Error?) in
+        client.get("/users"){ (users: [User]?, error: Error?) in
             guard error == nil else {
                 print("Error saving users from Kitura: \(error!)")
                 return
@@ -76,8 +76,8 @@ class SaveAndLoadData {
                 return
             }
             self.users = users
-        })
-        client.get("/posts", respondWith: { (posts: [Post]?, error: Error?) in
+        }
+        client.get("/posts") { (posts: [Post]?, error: Error?) in
             guard error == nil else {
                 print("Error saving posts from Kitura: \(error!)")
                 return
@@ -87,7 +87,7 @@ class SaveAndLoadData {
                 return
             }
             self.posts = posts
-        })
+        }
     }
     
     

@@ -14,6 +14,7 @@ class HomeDatasourceController: DatasourceController, CLLocationManagerDelegate 
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
+        SaveAndLoadData.sharedInstance.savePost(post: Post(user: User(username: "Malcolm", profilePicture: UIImagePNGRepresentation(#imageLiteral(resourceName: "MalcolmProfile"))!, bio: ""), caption: "Caption", postImage: UIImagePNGRepresentation(#imageLiteral(resourceName: "Nature1"))!, coordinate: Coordinate(latitude: 42.538713699999995, longitude: -83.2443334)))
         super.viewDidLoad()
         
         let homeDatasource = HomeDatasource()
@@ -26,8 +27,11 @@ class HomeDatasourceController: DatasourceController, CLLocationManagerDelegate 
         locationManager.delegate = self
         locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
+        setupData()
+        update()
     }
+    
+    
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 550)
@@ -70,6 +74,9 @@ class HomeDatasourceController: DatasourceController, CLLocationManagerDelegate 
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
             locationManager.startUpdatingLocation()
         }
+        update()
+        
+        
     }
     
     //MARK: temp for beacons of pics
@@ -92,6 +99,10 @@ class HomeDatasourceController: DatasourceController, CLLocationManagerDelegate 
     }
     
     
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        showAlert("Entered " + region.identifier)
+    }
+    
     func showAlert(_ title: String) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
@@ -101,5 +112,15 @@ class HomeDatasourceController: DatasourceController, CLLocationManagerDelegate 
         
     }
     
-    
+    public func update() {
+        let coordinate = CLLocationCoordinate2DMake(42.538713999999999, -83.2443334)
+        print(coordinate.latitude)
+        if locationManager.location?.coordinate.latitude == 42.538713999999999 {
+            SaveAndLoadData.sharedInstance.posts = [Post(user: User(username: "Malcolm", profilePicture: UIImagePNGRepresentation(#imageLiteral(resourceName: "MalcolmProfile"))!, bio: ""), caption: "Caption", postImage: UIImagePNGRepresentation(#imageLiteral(resourceName: "Nature1"))!, coordinate: Coordinate(latitude: 42.538713699999995, longitude: -83.2443334))]
+            let homeDatasource = HomeDatasource()
+            self.datasource = homeDatasource
+        }else {
+            SaveAndLoadData.sharedInstance.posts = [Post(user: User(username: "Alex", profilePicture: UIImagePNGRepresentation(#imageLiteral(resourceName: "AlexProfile"))!, bio: ""), caption: "Caption", postImage: UIImagePNGRepresentation(#imageLiteral(resourceName: "Alex1"))!, coordinate: Coordinate(latitude: 42.538713699999995, longitude: -83.2443334))]
+        }
+    }
 }
